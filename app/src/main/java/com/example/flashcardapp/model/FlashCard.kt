@@ -1,4 +1,4 @@
-package model
+package com.example.flashcardapp.model
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

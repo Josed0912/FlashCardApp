@@ -1,4 +1,4 @@
-package model
+package com.example.flashcardapp.model
 
 class Topic (name : String){
     var Name : String = name
