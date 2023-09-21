@@ -20,8 +20,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.flashcardapp.model.Topic
 import com.example.flashcardapp.materials.BottomBar
 import com.example.flashcardapp.materials.TopicDisplay
@@ -43,10 +45,13 @@ fun Router(){
     val navController = rememberNavController()
 
     CompositionLocalProvider(LocalNavController provides navController) {
-        NavHost(navController = navController, startDestination = "MainScreenRoute"){
-            composable("MainScreenRoute"){ MainScreen(navController)}
-            composable("AboutScreenRoute"){ AboutScreen(navController)}
-            composable("ContactScreenRoute"){ ContactScreen(navController)}
+        NavHost(navController = navController, startDestination = "MainScreenRoute/0"){
+            composable("MainScreenRoute/{selectedIndex}",
+                arguments = listOf(navArgument("selectedIndex"){type = NavType.IntType})){ MainScreen(navController, it.arguments?.getInt("selectedIndex") ?: 0)}
+            composable("AboutScreenRoute/{selectedIndex}",
+                arguments = listOf(navArgument("selectedIndex"){type = NavType.IntType})){ AboutScreen(navController, it.arguments?.getInt("selectedIndex") ?: 0)}
+            composable("ContactScreenRoute/{selectedIndex}",
+                arguments = listOf(navArgument("selectedIndex"){type = NavType.IntType})){ ContactScreen(navController, it.arguments?.getInt("selectedIndex") ?: 0)}
         }
     }
 }

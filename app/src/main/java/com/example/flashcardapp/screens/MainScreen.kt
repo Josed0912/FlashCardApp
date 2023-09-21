@@ -18,13 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.flashcardapp.materials.BottomBar
 import com.example.flashcardapp.materials.EmptyTopicDisplay
+import com.example.flashcardapp.materials.FlashCardScaffold
 import com.example.flashcardapp.materials.TopicDisplay
 import com.example.flashcardapp.model.Topic
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen( navController: NavController, modifier : Modifier = Modifier){
-
+fun MainScreen(navController: NavController, selectedIndex : Int, modifier : Modifier = Modifier, )
+{
     val topics = rememberSaveable{ mutableListOf<Topic>()}
     val new = rememberSaveable { mutableStateOf(false) }
 
@@ -36,33 +37,30 @@ fun MainScreen( navController: NavController, modifier : Modifier = Modifier){
     val addToList : (Topic) -> Unit = {
         topics.add(it)
     }
-
-    Scaffold (
-        topBar = {
-            TopAppBar(title = { Text("Welcome User!") } )
-        },
-        bottomBar = {
-            BottomBar()
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = {new.value = true}) {
+    FlashCardScaffold(
+        navController = navController,
+        actionButton = {
+            FloatingActionButton(onClick = {new.value = true})
+            {
                 Icon(Icons.Filled.Add, "Add Button")
             }
-        },
-
-        ) {
-        LazyVerticalGrid (
-            modifier = Modifier.padding(it),
-            columns = GridCells.Fixed(2),
-        ){
-            items(topics.count())
-            {
-                    topic ->
-                TopicDisplay(topics[topic])
+                       },
+        selectedIndex = selectedIndex)
+    {
+        if (new.value) {
+            EmptyTopicDisplay(addToList, updateNew)
+        }
+        else{
+            LazyVerticalGrid(
+                modifier = it,
+                columns = GridCells.Fixed(2)
+            ) {
+                items(topics.count())
+                { topic ->
+                    TopicDisplay(topics[topic])
+                }
             }
         }
     }
-    if (new.value) {
-        EmptyTopicDisplay(addToList, updateNew)
-    }
+
 }
