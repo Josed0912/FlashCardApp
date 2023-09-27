@@ -1,4 +1,4 @@
-package com.example.flashcardapp.materials
+package com.example.flashcardapp.layout
 
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -9,15 +9,15 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavController
+import com.example.flashcardapp.LocalNavController
 
 @Composable
-fun BottomBar(navController:NavController, selectedIndex : Int){
+fun BottomBar(selectedIndex : Int){
 
+    val navController = LocalNavController.current
     val selectedIndex = rememberSaveable{mutableIntStateOf(selectedIndex)}
 
     BottomNavigation(backgroundColor = Color.Cyan)
@@ -36,7 +36,7 @@ fun BottomBar(navController:NavController, selectedIndex : Int){
         BottomNavigationItem(selected = selectedIndex.value == 1,
             onClick = {
                 selectedIndex.value = 1
-                //navController.navigate("AccountScreenRoute")
+                navController.navigate("Register/Login/${selectedIndex.value}")
                       },
             icon = { Icon(imageVector = Icons.Default.Person,
                 contentDescription = "person",

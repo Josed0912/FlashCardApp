@@ -1,30 +1,23 @@
 package com.example.flashcardapp.screens
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import com.example.flashcardapp.materials.BottomBar
-import com.example.flashcardapp.materials.EmptyTopicDisplay
-import com.example.flashcardapp.materials.FlashCardScaffold
-import com.example.flashcardapp.materials.TopicDisplay
+import com.example.flashcardapp.LocalNavController
+import com.example.flashcardapp.layout.EmptyTopicDisplay
+import com.example.flashcardapp.layout.MainLayout
+import com.example.flashcardapp.layout.TopicDisplay
 import com.example.flashcardapp.model.Topic
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController: NavController, selectedIndex : Int, modifier : Modifier = Modifier, )
+fun MainScreen(selectedIndex : Int, modifier : Modifier = Modifier, )
 {
     val topics = rememberSaveable{ mutableListOf<Topic>()}
     val new = rememberSaveable { mutableStateOf(false) }
@@ -37,8 +30,7 @@ fun MainScreen(navController: NavController, selectedIndex : Int, modifier : Mod
     val addToList : (Topic) -> Unit = {
         topics.add(it)
     }
-    FlashCardScaffold(
-        navController = navController,
+    MainLayout(
         actionButton = {
             FloatingActionButton(onClick = {new.value = true})
             {
@@ -47,12 +39,13 @@ fun MainScreen(navController: NavController, selectedIndex : Int, modifier : Mod
                        },
         selectedIndex = selectedIndex)
     {
+        val navController = LocalNavController.current
         if (new.value) {
             EmptyTopicDisplay(addToList, updateNew)
         }
         else{
             LazyVerticalGrid(
-                modifier = it,
+                modifier = modifier,
                 columns = GridCells.Fixed(2)
             ) {
                 items(topics.count())

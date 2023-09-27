@@ -2,13 +2,11 @@ package com.example.flashcardapp.screens
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import com.example.flashcardapp.layout.MainLayout
 
 @Composable
-fun ContactScreen(selectedIndex : Int, modifier : Modifier = Modifier,){
-    MainLayout(actionButton = {}, selectedIndex)
-    {
-        Text("Contact")
+fun SignUpScreen(selectedIndex : Int){
+    MainLayout(actionButton = {}, selectedIndex = selectedIndex) {
+        Text("Sign Up Page")
     }
 }

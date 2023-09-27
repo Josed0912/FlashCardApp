@@ -1,4 +1,4 @@
-package com.example.flashcardapp.materials
+package com.example.flashcardapp.layout
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CardDefaults

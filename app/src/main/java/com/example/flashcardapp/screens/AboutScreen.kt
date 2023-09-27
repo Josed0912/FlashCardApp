@@ -1,13 +1,14 @@
 package com.example.flashcardapp.screens
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import com.example.flashcardapp.materials.FlashCardScaffold
+import com.example.flashcardapp.layout.MainLayout
 
 @Composable
-fun AboutScreen(navController: NavController, selectedIndex : Int, modifier : Modifier = Modifier)
+fun AboutScreen(selectedIndex : Int, modifier : Modifier = Modifier)
 {
-    FlashCardScaffold(navController = navController, actionButton = {}, selectedIndex) {
+    MainLayout(actionButton = {}, selectedIndex) {
+        Text("About")
     }
 }
