@@ -6,9 +6,9 @@ import androidx.compose.ui.Modifier
 import com.example.flashcardapp.layout.MainLayout
 
 @Composable
-fun AboutScreen(selectedIndex : Int, modifier : Modifier = Modifier)
+fun AboutScreen(modifier : Modifier = Modifier)
 {
-    MainLayout(actionButton = {}, selectedIndex) {
+    MainLayout(actionButton = {}, modifier = modifier) {
         Text("About")
     }
 }

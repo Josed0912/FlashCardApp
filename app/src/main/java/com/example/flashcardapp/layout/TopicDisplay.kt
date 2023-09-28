@@ -13,11 +13,11 @@ import androidx.compose.ui.unit.sp
 import com.example.flashcardapp.model.Topic
 
 @Composable
-fun TopicDisplay(topic : Topic)
+fun TopicDisplay(topic : Topic, modifier : Modifier = Modifier,)
 {
     ElevatedCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        modifier = Modifier.padding(16.dp)
+        modifier = modifier.padding(16.dp)
     ){
         Text(
             text = topic.Name,

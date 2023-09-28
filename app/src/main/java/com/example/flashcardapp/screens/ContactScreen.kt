@@ -6,8 +6,8 @@ import androidx.compose.ui.Modifier
 import com.example.flashcardapp.layout.MainLayout
 
 @Composable
-fun ContactScreen(selectedIndex : Int, modifier : Modifier = Modifier,){
-    MainLayout(actionButton = {}, selectedIndex)
+fun ContactScreen(modifier : Modifier = Modifier,){
+    MainLayout(actionButton = {}, modifier = modifier)
     {
         Text("Contact")
     }

@@ -20,27 +20,35 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.flashcardapp.model.Topic
 
+//Make into a separate page
 @Composable
-fun EmptyTopicDisplay(addTopic : (Topic) -> Unit, updateNew : (Boolean) -> Unit){
+fun TopicForm(updateNew : (Boolean) -> Unit)
+{
+    val topics = LocalTopicList.current
+
     ElevatedCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        modifier = Modifier.padding(70.dp)
+        modifier = Modifier.padding(60.dp)
     )
+    //Add validation:
+    //Check for the length of the name of the topic (20 characters)
+    //Check that the name is unique.
     {
         Column(modifier = Modifier.padding(20.dp)){
             var nameValue by rememberSaveable{ mutableStateOf("") }
 
-            Text("Enter the name of the topic:")
+            Text("Name of the topic:")
+            Spacer(modifier = Modifier.height(10.dp))
             TextField(value = nameValue,
                 onValueChange = {nameValue = it},
                 textStyle = TextStyle(textAlign = TextAlign.Center),
             )
             Spacer(modifier = Modifier.height(6.dp))
             Button(onClick = {
-                addTopic(Topic(nameValue))
+                topics.add(Topic(nameValue))
                 updateNew(false)
             }){
-                Text("Submit")
+                Text("Add")
             }
         }
 
