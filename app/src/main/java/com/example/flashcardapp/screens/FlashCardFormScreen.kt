@@ -1,4 +1,4 @@
-package com.example.flashcardapp.layout
+package com.example.flashcardapp.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,19 +17,19 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.flashcardapp.layout.LocalNavController
+import com.example.flashcardapp.layout.LocalTopicList
+import com.example.flashcardapp.layout.MainLayout
 import com.example.flashcardapp.model.FlashCard
+import com.example.flashcardapp.model.Routes
 
-//Make into a separate page
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FlashCardForm(index : Int){
+fun FlashCardFormScreen(index : Int){
     val topic = LocalTopicList.current[index]
     val navController = LocalNavController.current
 
-    ElevatedCard(
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        modifier = Modifier.padding(60.dp)
-    )
+    MainLayout(actionButton = {})
     {
         Column(modifier = Modifier.padding(20.dp)){
             var questionValue by rememberSaveable {mutableStateOf("")}
@@ -47,7 +47,7 @@ fun FlashCardForm(index : Int){
             Spacer(modifier = Modifier.height(10.dp))
             Button(onClick = {
                 topic.addCard(FlashCard( questionValue, answerValue))
-                navController.popBackStack()
+                navController.navigate(Routes.TopicPage.route + "/$index");
                 //Error When you add a flashcard you need to go back to the topic page
             }){
                 Text("Add")

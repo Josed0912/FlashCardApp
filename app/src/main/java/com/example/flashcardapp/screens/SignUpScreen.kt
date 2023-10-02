@@ -33,7 +33,7 @@ fun SignUpScreen(){
         var confirmedPasswordValue by rememberSaveable { mutableStateOf("") }
 
         //Add validation:
-        //Check that the length of the password is at least 8 characters with one uppercase one lowercase one number and one symbol
+        //Check that the length of the password is at least 8 characters with one uppercase, one lowercase, one number, and one symbol
         //Check that the confirm password is the same as the password
 
         Text("Sign Up Page", fontSize = 36.sp)

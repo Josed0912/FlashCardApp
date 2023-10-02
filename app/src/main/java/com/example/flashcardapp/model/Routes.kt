@@ -14,4 +14,9 @@ sealed class Routes (val route: String){
         }
         object SignUp : Routes("Register/SignUp")
     }
+
+    object TopicForm: Routes("TopicForm")
+    object FlashCardForm: Routes("FlashCardForm")
+
+    object TopicPage: Routes("Topic")
 }
