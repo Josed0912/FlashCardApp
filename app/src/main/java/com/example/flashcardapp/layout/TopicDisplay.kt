@@ -3,9 +3,11 @@ package com.example.flashcardapp.layout
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -30,5 +32,6 @@ fun TopicDisplay(topic : Topic, modifier : Modifier = Modifier,)
             text = "FlashCards: ${topic.FlashCards.count()}",
             modifier = Modifier.padding(16.dp)
         )
+        Icon(painter = painterResource(id = topic.Icon.Source), contentDescription = "icon")
     }
 }
