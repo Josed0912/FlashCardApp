@@ -10,7 +10,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
@@ -39,23 +38,27 @@ fun MainScreen(modifier: Modifier = Modifier, simpleViewModel : SimpleViewModel 
             }
         })
     {
+
         Text("Topics", fontSize = 48.sp)
-        LazyVerticalGrid(
-            modifier = modifier,
-            columns = GridCells.Fixed(2)
-        ) {
-            items(topics.count())
-            { topic ->
-                TopicDisplay(topics[topic], Modifier.clickable(onClick = {
-                    navController.navigate(Routes.TopicPage.route + "/$topic")
-                }))
-            }
-        }
         Text("${simpleViewModel.count}")
         Button(onClick = {simpleViewModel.increment()},)
         {
             Text("Increment")
         }
+        LazyVerticalGrid(
+            modifier = modifier,
+            columns = GridCells.Fixed(2)
+        ) {
+
+            items(topics.count())
+            { topic ->
+                TopicDisplay(topics[topic], Modifier.clickable(onClick = {
+                    navController.navigate(Routes.TopicPage.route + "/$topic")
+                }))
+
+            }
+        }
+
 
     }
 
