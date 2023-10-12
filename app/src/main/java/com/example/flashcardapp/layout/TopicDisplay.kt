@@ -1,5 +1,6 @@
 package com.example.flashcardapp.layout
 
+
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,7 +27,6 @@ fun TopicDisplay(topic : Topic, modifier : Modifier = Modifier,)
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         modifier = modifier.padding(16.dp)
     ){
-
             Text(
                 text = topic.Name,
                 fontSize = 24.sp,
@@ -45,8 +45,6 @@ fun TopicDisplay(topic : Topic, modifier : Modifier = Modifier,)
             contentDescription = "icon",
             modifier = Modifier.size(24.dp).align(Alignment.CenterEnd))
         }
-
-
 
 
     }

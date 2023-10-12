@@ -7,23 +7,28 @@ import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.flashcardapp.layout.LocalNavController
 import com.example.flashcardapp.layout.LocalTopicList
 import com.example.flashcardapp.layout.MainLayout
 import com.example.flashcardapp.layout.TopicDisplay
 import com.example.flashcardapp.model.Routes
+import com.example.flashcardapp.viewmodels.SimpleViewModel
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(modifier: Modifier = Modifier, simpleViewModel : SimpleViewModel = viewModel()) {
+
     val topicHandle = LocalTopicList.current
 
-    val topics = rememberSaveable { topicHandle }
+    val topics = rememberSaveable { topicHandle }  
+  
     var navController = LocalNavController.current
 
     MainLayout(
@@ -45,6 +50,11 @@ fun MainScreen(modifier: Modifier = Modifier) {
                     navController.navigate(Routes.TopicPage.route + "/$topic")
                 }))
             }
+        }
+        Text("${simpleViewModel.count}")
+        Button(onClick = {simpleViewModel.increment()},)
+        {
+            Text("Increment")
         }
 
     }
