@@ -1,9 +1,11 @@
 package com.example.flashcardapp.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.TextField
 import androidx.compose.material3.Button
@@ -65,6 +67,12 @@ fun TopicFormScreen()
                     onValueChange = {nameValue = it},
                     textStyle = TextStyle(textAlign = TextAlign.Center),
                 )
+                Spacer(modifier = Modifier.height(10.dp))
+                Text("Icon:")
+                Spacer(modifier = Modifier.height(10.dp))
+                ElevatedCard(modifier = Modifier.width(200.dp).clickable(onClick = {expanded.value = true})){
+                    Text(text=subjects[selectedIcon.value].Name)
+                }
                 //Add something (COMPOSABLE, button/label) to modify the expanded value
                 DropdownMenu(expanded = expanded.value,
                     onDismissRequest = {expanded.value = false})

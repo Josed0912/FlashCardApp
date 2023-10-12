@@ -9,6 +9,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 import com.example.flashcardapp.layout.LocalNavController
@@ -19,7 +21,9 @@ import com.example.flashcardapp.model.Routes
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
-    val topics = LocalTopicList.current
+    val topicHandle = LocalTopicList.current
+
+    val topics = rememberSaveable { topicHandle }
     var navController = LocalNavController.current
 
     MainLayout(
