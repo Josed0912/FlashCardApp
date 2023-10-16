@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.flashcardapp.layout.LocalNavController
-import com.example.flashcardapp.layout.LocalTopicList
 import com.example.flashcardapp.layout.MainLayout
 import com.example.flashcardapp.layout.TopicDisplay
 import com.example.flashcardapp.model.Routes
@@ -24,9 +23,11 @@ import com.example.flashcardapp.viewmodels.SimpleViewModel
 @Composable
 fun MainScreen(modifier: Modifier = Modifier, simpleViewModel : SimpleViewModel = viewModel()) {
 
-    val topicHandle = LocalTopicList.current
+    //val topicHandle = LocalTopicList.current
 
-    val topics = rememberSaveable { topicHandle }  
+    //val topics = rememberSaveable { topicHandle }
+
+    val topics = rememberSaveable {simpleViewModel.topics}
   
     var navController = LocalNavController.current
 

@@ -22,19 +22,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.flashcardapp.R
 import com.example.flashcardapp.layout.LocalNavController
-import com.example.flashcardapp.layout.LocalTopicList
 import com.example.flashcardapp.layout.MainLayout
 import com.example.flashcardapp.model.Routes
 import com.example.flashcardapp.model.Topic
 import com.example.flashcardapp.model.TopicIcon
+import com.example.flashcardapp.viewmodels.SimpleViewModel
 
 
 @Composable
-fun TopicFormScreen()
+fun TopicFormScreen(simpleViewModel : SimpleViewModel = viewModel())
 {
-    val topics = LocalTopicList.current
+    val topics = simpleViewModel.topics
     val navController = LocalNavController.current
     val subjects = listOf(TopicIcon("Art", R.drawable.art),
         TopicIcon("English", R.drawable.english),
@@ -91,7 +92,7 @@ fun TopicFormScreen()
 
                 Spacer(modifier = Modifier.height(6.dp))
                 Button(onClick = {
-                    topics.add(Topic(nameValue, subjects[selectedIcon.value]))
+                    simpleViewModel.add(Topic(nameValue, subjects[selectedIcon.value]))
                     navController.navigate(Routes.Main.route)
                 }){
                     Text("Add")

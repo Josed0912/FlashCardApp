@@ -13,15 +13,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.flashcardapp.layout.FlashCardDisplay
 import com.example.flashcardapp.layout.LocalNavController
-import com.example.flashcardapp.layout.LocalTopicList
 import com.example.flashcardapp.layout.MainLayout
 import com.example.flashcardapp.model.Routes
+import com.example.flashcardapp.viewmodels.SimpleViewModel
 
 @Composable
-fun TopicPage(index: Int) {
-    val topic = LocalTopicList.current[index]
+fun TopicPage(index: Int, simpleViewModel : SimpleViewModel = viewModel()) {
+    val topic = simpleViewModel.topics[index]
     val navController = LocalNavController.current
 
     MainLayout(actionButton = {
